@@ -10,20 +10,13 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-`;
-
-
 export const HeaderTitle = styled.h1`
   margin: 0;
-  font-size: 32px;
+  margin-bottom: 16px;
   font-weight: 500;
-  color: #272727;
-  line-height: 1.2;
+  font-size: 24px;
+  line-height: 133%;
+  color: #1f2939;
 `;
 
 export const TableWrapper = styled.div`
@@ -38,31 +31,9 @@ export const TableWrapper = styled.div`
 `;
 
 export const TableContainer = styled.div`
-  overflow: auto;
-  flex: 1;
+  flex: 1 1 0;
   min-height: 0;
-  display: block;
-
-  table {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-  }
-
-  thead {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-
-  tbody {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-  }
+  overflow: auto;
 `;
 
 export const Table = styled.table`
@@ -72,6 +43,9 @@ export const Table = styled.table`
 
 export const TableHead = styled.thead`
   background: #f0f3f7;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 `;
 
 export const TableHeadRow = styled.tr``;
@@ -86,7 +60,7 @@ export const TableHeadCell = styled.th`
   white-space: nowrap;
 
   &:first-child {
-    width: 80px;
+    width: 48px;
   }
 
   &:last-child {
@@ -115,9 +89,15 @@ export const TableRow = styled.tr`
 
 export const TableCell = styled.td`
   padding: 8px 12px;
+  font-weight: 400;
   font-size: 14px;
-  color: #272727;
+  line-height: 143%;
+  color: #1f2939;
   vertical-align: middle;
+
+  &:nth-last-child(2) {
+    color: #5e6674;
+  }
 `;
 
 export const TypeBadge = styled.span<{ type: string }>`
@@ -160,6 +140,7 @@ export const Pagination = styled.div`
   align-items: center;
   padding: 8px 16px;
   border-top: 1px solid #f0f0f0;
+  flex-shrink: 0;
 `;
 
 export const PaginationButtons = styled.div`

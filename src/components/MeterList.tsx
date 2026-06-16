@@ -1,29 +1,28 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { IRootStore } from '../stores/RootStore';
-import {
-  Container,
-  Header,
-  HeaderTitle,
-  TableWrapper,
-  TableContainer,
-  Table,
-  TableHead,
-  TableHeadRow,
-  TableHeadCell,
-  TableBody,
-  TableRow,
-  TableCell,
-  TypeBadge,
-  DeleteButton,
-  Pagination,
-  PaginationButtons,
-  PageButton,
-  LoadingContainer,
-} from './MeterList.styles';
 import IconGVS from '../icons/icon-gvs.svg';
 import IconHVS from '../icons/icon-hvs.svg';
 import IconTrash from '../icons/icon-trash.svg';
+import { IRootStore } from '../stores/RootStore';
+import {
+  Container,
+  DeleteButton,
+  HeaderTitle,
+  LoadingContainer,
+  PageButton,
+  Pagination,
+  PaginationButtons,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeadCell,
+  TableHeadRow,
+  TableRow,
+  TableWrapper,
+  TypeBadge,
+} from './MeterList.styles';
 
 interface MeterListProps {
   store: IRootStore;
@@ -32,7 +31,6 @@ interface MeterListProps {
 const DeleteIcon = () => (
   <img src={IconTrash} alt="Delete" width="14" height="15" />
 );
-
 
 export const MeterList = observer(({ store }: MeterListProps) => {
   const { meterStore, areaStore } = store;
@@ -57,18 +55,6 @@ export const MeterList = observer(({ store }: MeterListProps) => {
 
   const handleDelete = (meterId: string) => {
     meterStore.deleteMeter(meterId);
-  };
-
-  const handlePrevPage = () => {
-    const newOffset = Math.max(0, meterStore.offset - meterStore.limit);
-    meterStore.setOffset(newOffset);
-  };
-
-  const handleNextPage = () => {
-    const newOffset = meterStore.offset + meterStore.limit;
-    if (newOffset < meterStore.count) {
-      meterStore.setOffset(newOffset);
-    }
   };
 
   const handlePageClick = (page: number) => {
@@ -121,9 +107,7 @@ export const MeterList = observer(({ store }: MeterListProps) => {
 
   return (
     <Container>
-      <Header>
-        <HeaderTitle>Список счётчиков</HeaderTitle>
-      </Header>
+      <HeaderTitle>Список счётчиков</HeaderTitle>
 
       <TableWrapper>
         <TableContainer>
@@ -134,7 +118,7 @@ export const MeterList = observer(({ store }: MeterListProps) => {
                 <TableHeadCell>Тип</TableHeadCell>
                 <TableHeadCell>Дата установки</TableHeadCell>
                 <TableHeadCell>Автоматический</TableHeadCell>
-                <TableHeadCell>Значение</TableHeadCell>
+                <TableHeadCell>Текущие показания</TableHeadCell>
                 <TableHeadCell>Адрес</TableHeadCell>
                 <TableHeadCell>Примечание</TableHeadCell>
                 <TableHeadCell></TableHeadCell>
@@ -204,9 +188,7 @@ export const MeterList = observer(({ store }: MeterListProps) => {
                 <PageButton
                   key={index}
                   onClick={() => handlePageClick(page)}
-                  className={
-                    meterStore.currentPage === page ? 'active' : ''
-                  }
+                  className={meterStore.currentPage === page ? 'active' : ''}
                 >
                   {page}
                 </PageButton>
