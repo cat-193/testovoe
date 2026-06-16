@@ -1,7 +1,7 @@
 const API_BASE_URL =
   import.meta.env.MODE === 'development'
     ? '/api'
-    : 'http://showroom.eis24.me/c300/api';
+    : 'https://corsproxy.io/?http://showroom.eis24.me/c300/api';
 
 export const apiClient = {
   get: async (endpoint: string) => {
