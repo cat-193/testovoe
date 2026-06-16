@@ -1,4 +1,5 @@
 import { types, flow } from 'mobx-state-tree';
+import { apiClient } from '../utils/apiClient';
 
 const House = types.model('House', {
   id: types.string,
@@ -30,10 +31,9 @@ export const AreaStore = types
         const params = new URLSearchParams();
         unknownIds.forEach((id) => params.append('id__in', id));
 
-        const response = yield fetch(
-          `/api/v4/test/areas/?${params.toString()}`
+        const data = yield apiClient.get(
+          `/v4/test/areas/?${params.toString()}`
         );
-        const data = yield response.json();
 
         data.results.forEach((area: any) => {
           self.areas.put(area);

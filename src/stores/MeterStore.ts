@@ -1,4 +1,5 @@
 import { types, flow } from 'mobx-state-tree';
+import { apiClient } from '../utils/apiClient';
 
 const Meter = types.model('Meter', {
   id: types.identifier,
@@ -28,10 +29,9 @@ export const MeterStore = types
     const fetchMeters = flow(function* () {
       self.loading = true;
       try {
-        const response = yield fetch(
-          `/api/v4/test/meters/?limit=${self.limit}&offset=${self.offset}`
+        const data = yield apiClient.get(
+          `/v4/test/meters/?limit=${self.limit}&offset=${self.offset}`
         );
-        const data = yield response.json();
 
         self.meters.replace(data.results);
         self.count = data.count;
@@ -44,9 +44,7 @@ export const MeterStore = types
 
     const deleteMeter = flow(function* (meterId: string) {
       try {
-        yield fetch(`/api/v4/test/meters/${meterId}/`, {
-          method: 'DELETE',
-        });
+        yield apiClient.delete(`/v4/test/meters/${meterId}/`);
 
         yield fetchMeters();
       } catch (error) {
