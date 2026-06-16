@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   background-color: #f5f5f5;
   padding: 40px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `;
 
 export const Header = styled.div`
@@ -25,13 +28,41 @@ export const HeaderTitle = styled.h1`
 
 export const TableWrapper = styled.div`
   background-color: #ffffff;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e5eb;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
 `;
 
 export const TableContainer = styled.div`
-  overflow-x: auto;
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  display: block;
+
+  table {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
 `;
 
 export const Table = styled.table`
@@ -40,18 +71,18 @@ export const Table = styled.table`
 `;
 
 export const TableHead = styled.thead`
-  background-color: #fafafa;
-  border-bottom: 1px solid #e8e8e8;
+  background: #f0f3f7;
 `;
 
 export const TableHeadRow = styled.tr``;
 
 export const TableHeadCell = styled.th`
-  padding: 16px 20px;
+  padding: 8px 12px;
   text-align: left;
-  font-size: 14px;
-  font-weight: 600;
-  color: #8a8a8a;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 123%;
+  color: #697180;
   white-space: nowrap;
 
   &:first-child {
@@ -70,7 +101,7 @@ export const TableRow = styled.tr`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #fafafa;
+    background: #f7f8f9;
 
     button {
       opacity: 1;
@@ -83,7 +114,7 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  padding: 20px;
+  padding: 8px 12px;
   font-size: 14px;
   color: #272727;
   vertical-align: middle;
@@ -93,7 +124,6 @@ export const TypeBadge = styled.span<{ type: string }>`
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
   border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
@@ -126,9 +156,9 @@ export const DeleteButton = styled.button`
 
 export const Pagination = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding: 20px 24px;
+  padding: 8px 16px;
   border-top: 1px solid #f0f0f0;
 `;
 
@@ -139,11 +169,11 @@ export const PaginationButtons = styled.div`
 `;
 
 export const PageButton = styled.button`
-  min-width: 36px;
-  height: 36px;
+  min-width: 32px;
+  height: 32px;
   padding: 0 8px;
   background-color: #ffffff;
-  border: 1px solid #e8e8e8;
+  border: 1px solid #ced5de;
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
@@ -159,14 +189,7 @@ export const PageButton = styled.button`
   }
 
   &.active {
-    background-color: #1d6bf3;
-    color: white;
-    border-color: #1d6bf3;
-  }
-
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
+    background: #f2f5f8;
   }
 `;
 

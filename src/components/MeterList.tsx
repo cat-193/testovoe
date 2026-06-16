@@ -199,12 +199,6 @@ export const MeterList = observer(({ store }: MeterListProps) => {
 
         <Pagination>
           <PaginationButtons>
-            <PageButton
-              onClick={handlePrevPage}
-              disabled={meterStore.currentPage === 1}
-            >
-              ←
-            </PageButton>
             {getPageNumbers().map((page, index) =>
               typeof page === 'number' ? (
                 <PageButton
@@ -217,17 +211,11 @@ export const MeterList = observer(({ store }: MeterListProps) => {
                   {page}
                 </PageButton>
               ) : (
-                <span key={index} style={{ padding: '8px' }}>
+                <PageButton key={index} style={{ padding: '8px' }}>
                   {page}
-                </span>
+                </PageButton>
               )
             )}
-            <PageButton
-              onClick={handleNextPage}
-              disabled={meterStore.currentPage === meterStore.totalPages}
-            >
-              →
-            </PageButton>
           </PaginationButtons>
         </Pagination>
       </TableWrapper>
